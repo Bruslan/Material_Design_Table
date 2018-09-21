@@ -1,0 +1,110 @@
+
+
+.table td,
+.table th {
+  vertical-align: middle !important;
+
+}
+
+.table thead th{
+  font-family:  lato;
+  font-weight: bold !important;
+  color: black
+}
+
+#Checkboxes p{
+  color: black !important;
+  
+}
+
+#switches{
+  transition: opacity 300ms ease-in-out 1s;
+}
+#switches.hidden{
+
+  opacity:  0;
+}
+
+
+#demo-menu-lower-right{
+  margin-right: 15px;
+  margin-top: 15px;
+}
+#addButton{
+  margin-right: 15px;
+  margin-top: 15px;
+}
+
+
+.menu {
+  vertical-align: middle !important;
+}
+tbody tr:hover td {
+  background: #fcf3d0 !important;
+}
+.hidden {
+  display: none;
+}
+
+
+@media only screen and (max-width: 780px)  {
+
+  .enableCheckbox{
+    display: none;
+  }
+  .enableCheckboxToggler{
+    display: initial;
+  }
+}
+.enableCheckboxToggler{
+  display: none
+}
+
+
+.switch label .bmd-switch-track {
+  margin-top: 2px;
+  
+
+  background: #ffe59f !important;
+  transition: all 0.5s ease-out;
+}
+.switch label .bmd-switch-track:after {
+  background: white !important;
+
+}
+
+
+.switch label .checkboxUnchecked {
+  margin-top: 2px;
+  
+
+  background: grey !important;
+  transition: all 0.5s ease-out;
+}
+.protocoll {
+  background: lightgrey;
+}
+
+.noProtocoll {
+  opacity: 0.2;
+}
+.card {
+  margin: 0 auto 0;
+
+  position: relative;
+}
+.card-body {
+  margin: 0 auto 0;
+  max-height: 500px;
+  overflow-y: scroll;
+  position: relative;
+  transition: all 0.2s ease-out;
+}
+@media (min-width: 768px) {
+  .table-wrapper {
+    background: white;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  }
+}
+
+b
