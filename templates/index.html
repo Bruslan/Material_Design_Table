@@ -79,6 +79,33 @@
         </div>
     </nav>
 
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <form id="modalForm">
+                        <!-- <div class="form-group">
+                            <label class="bmd-label-floating">Email address</label>
+                            <input class="form-control">
+                        </div> -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="addFahrzeuge" class="btn btn-primary">Save new</button>
+                    <button type="button" id="editSave" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <nav class="mt-5" aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -89,16 +116,47 @@
     </div>
 
 
-    <div id="dieTabelle">
+    <div id="accordion" class="container">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                        FahrzeugTabelle
+                    </button>
+                </h5>
+            </div>
 
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <div id="dieTabelle">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                        MitarbeiterTabelle
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="mt-5" id="dieTabelle2">
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
 
-    <div class="mt-5" id="dieTabelle2">
 
 
-    </div>
+
     <!-- ab hier das Object table -->
 
 

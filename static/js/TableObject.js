@@ -78,7 +78,7 @@ class Table {
       let editButton = this.createButton("edit", "editButton");
       editButton.setAttribute("data-toggle", "modal");
       //magic Number!!!
-      editButton.setAttribute("data-target", "#exampleModalCenter");
+      // editButton.setAttribute("data-target", "#exampleModalCenter");
       buttonCollumn.appendChild(editButton);
 
       let protocollButton = this.createButton("receipt", "protoCollButton");
@@ -254,8 +254,10 @@ aria-hidden="true">
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" id="addFahrzeuge" class="btn btn-primary">Save new</button>
-            <button type="button" id="editSave" class="btn btn-primary">Save changes</button>
+            <button type="button" id=${targetId +
+              "SaveNew"} class="btn btn-primary">Save new</button>
+            <button type="button" id=${targetId +
+              "Edit"} class="btn btn-primary">Save changes</button>
         </div>
     </div>
 </div>
@@ -376,7 +378,6 @@ aria-hidden="true">
     // Download CSV file
     this.downloadCSV(csv.join("\n"), filename);
   }
-
   filterTable(searchField) {
     // Declare variables
     let input, filter, table, tr, td, i;
@@ -708,8 +709,8 @@ function initTable(tbl, divID, searchFieldId) {
     tbl.exportToCSV(divID);
   });
 
-  $("#" + divID + "saveButton").click(function() {
-    let modalForm = document.getElementById("modalForm");
+  $("#" + divID + "SaveNew").click(function() {
+    let modalForm = document.getElementById(divID + "Form");
 
     let inputFields = modalForm.getElementsByTagName("input");
 
@@ -735,7 +736,7 @@ function initTable(tbl, divID, searchFieldId) {
     tbl.toggleCheckBoxes(this);
   });
 
-  $(document).on("click", "#editSave", function() {
+  $(document).on("click", "#" + divID + "Edit", function() {
     //suche die current Modal aus
 
     console.log("try to save");
