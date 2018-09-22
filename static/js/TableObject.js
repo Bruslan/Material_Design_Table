@@ -7,8 +7,10 @@ class Table {
     this.id_String = id_String;
     this.checkBoxDivID;
     this.searchField;
+    this.checkBox;
     this.menu;
     this.checkBoxState = { "0": "checked" };
+    this.dropDownMenu;
   }
 
   appendRow(rowData) {
@@ -113,9 +115,9 @@ class Table {
 
     return tableHead;
   }
-  createCheckboxes(targetId) {
-    let targetDiv = document.getElementById(targetId);
-    this.checkBoxDivID = targetId;
+  createCheckboxes() {
+    let targetDiv = document.createElement("div");
+
     targetDiv.setAttribute("class", "row justify-content-md-center");
     let letswitch = "";
     let counter = 0;
@@ -135,6 +137,7 @@ class Table {
     }
 
     targetDiv.innerHTML = letswitch;
+    return targetDiv;
   }
   createButton(materialIconName, buttonClass) {
     let button = document.createElement("button");
@@ -165,25 +168,25 @@ class Table {
     return tableBody;
   }
   createSearchField(targetId) {
-    let searchDiv = document.getElementById(targetId);
-    searchDiv.innerHTML = `<div>
+    let searchElement = `<div>
     <form class="ml-4 m-0" action="#">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-upgraded" data-upgraded=",MaterialTextfield">
-            <label class="mdl-button mdl-js-button mdl-button--icon " for="searchField" data-upgraded=",MaterialButton">
-                <i id = "searchButton" class="material-icons">search</i>
+            <label class="mdl-button mdl-js-button mdl-button--icon " for=${targetId} data-upgraded=",MaterialButton">
+                <i id = ${targetId}Button class="material-icons">search</i>
             </label>
 
 
 
             <div class="mdl-textfield__expandable-holder">
-                <input class="mdl-textfield__input" type="text" id="searchField">
+                <input class="mdl-textfield__input" type="text" id=${targetId}>
                 <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
             </div>
 
         </div>
     </form>
 </div>`;
-    this.searchField = searchDiv;
+
+    return searchElement;
   }
   createMenu(targetId) {
     let targetDiv = document.getElementById(targetId);
@@ -227,6 +230,94 @@ class Table {
 
     targetDiv.innerHTML = menu;
     this.menu = targetDiv;
+  }
+  createModal(targetId) {
+    let modalDom = `<div class="modal fade" id=${targetId +
+      "Modal"} tabindex="-1" role="dialog" aria-labelledby=${targetId +
+      "Modal"} 
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" id="modalBody">
+            <form id=${targetId + "Form"}>
+                <!-- <div class="form-group">
+                    <label class="bmd-label-floating">Email address</label>
+                    <input class="form-control">
+                </div> -->
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="addFahrzeuge" class="btn btn-primary">Save new</button>
+            <button type="button" id="editSave" class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
+</div>
+</div>`;
+
+    return modalDom;
+  }
+  createAddButton(addbuttonID) {
+    let addButton = document.createElement("button");
+    addButton.setAttribute(
+      "class",
+      "mdl-button mdl-js-button mdl-button--icon mdl-button--fab mdl-button--mini-fab addButton"
+    );
+    addButton.setAttribute("type", "button");
+    addButton.setAttribute("data-toggle", "modal");
+    addButton.setAttribute("data-target", "#" + addbuttonID + "Modal");
+    addButton.setAttribute("id", addbuttonID + "addButton");
+    addButton.innerHTML = `<i class="material-icons">add</i>`;
+    return addButton;
+  }
+
+  createMenuDropDown(menuId) {
+    let menuDropDown = `<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for=${menuId +
+      "Dropdown"}>
+    <li class="mdl-list__item mdl-menu__item downloadCSV">
+        <span class="mdl-list__item-primary-content ">
+            <i class="material-icons mdl-list__item-icon">save</i>
+            Save CSV
+        </span>
+    </li>
+    <li class="mdl-list__item mdl-menu__item downloadExcel">
+        <span class="mdl-list__item-primary-content ">
+            <i class="material-icons mdl-list__item-icon">list</i>
+            Save Excel
+        </span>
+    </li>
+    <li class="mdl-list__item mdl-menu__item enableCheckboxes">
+        <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-icon">import_export</i>
+            Import CSV
+        </span>
+    </li>
+    <li class="mdl-list__item mdl-menu__item ">
+        <span class="mdl-list__item-primary-content ">
+            <i class="material-icons mdl-list__item-icon ">cloud</i>
+            Archif download
+        </span>
+    </li>
+
+</ul>`;
+    return menuDropDown;
+  }
+  createMenuButton(menuId) {
+    let menuButton = document.createElement("button");
+    menuButton.setAttribute(
+      "class",
+      "mdl-button mdl-js-button mdl-button--icon mdl-button--fab mdl-button--mini-fab dropDownMenu"
+    );
+    menuButton.setAttribute("type", "button");
+    menuButton.setAttribute("id", menuId + "Dropdown");
+    menuButton.innerHTML = `<i class="material-icons">apps</i>`;
+    return menuButton;
   }
   deleteRow(rowNr) {
     this.table.deleteRow(rowNr);
@@ -285,8 +376,7 @@ class Table {
     // Download CSV file
     this.downloadCSV(csv.join("\n"), filename);
   }
-  editRow(row) {}
-  exportToExcel(outputFileName) {}
+
   filterTable(searchField) {
     // Declare variables
     let input, filter, table, tr, td, i;
@@ -473,7 +563,218 @@ class Table {
   }
   initializeModal() {}
 
-  initializeTable() {
+  initializeTable(targetId, searchFieldID) {
     this.table = this.create();
+    this.checkBox = this.createCheckboxes();
+    let sField = this.createSearchField(searchFieldID);
+    let rootElement = document.getElementById(targetId);
+    let checkBoxWrapper = document.createElement("div");
+    checkBoxWrapper.setAttribute("class", "container card enableCheckbox");
+    checkBoxWrapper.appendChild(this.checkBox);
+    rootElement.appendChild(checkBoxWrapper);
+
+    //nun die tabelle
+    let tableWrapper = document.createElement("div");
+    tableWrapper.setAttribute("class", "row card-body container");
+    tableWrapper.appendChild(this.table);
+
+    this.searchField = document.createElement("div");
+    this.searchField.setAttribute("class", "col");
+    this.searchField.setAttribute("id", "searchField");
+    this.searchField.innerHTML = sField;
+
+    let menuField = document.createElement("div");
+    menuField.setAttribute("class", "row");
+
+    menuField.appendChild(this.searchField);
+
+    let buttons = document.createElement("div");
+    buttons.setAttribute("class", "col text-right vcenter");
+
+    let addButton = this.createAddButton(targetId);
+    let modaLWrapper = document.createElement("div");
+    let ModalDom = this.createModal(targetId);
+    modaLWrapper.innerHTML = ModalDom;
+
+    let menuButton = this.createMenuButton(targetId);
+
+    let menuDropDown = this.createMenuDropDown(targetId);
+    let menuDropDownWrapper = document.createElement("div");
+    menuDropDownWrapper.innerHTML = menuDropDown;
+
+    this.dropDownMenu = menuDropDownWrapper;
+    buttons.appendChild(addButton);
+
+    buttons.appendChild(menuButton);
+
+    buttons.appendChild(menuDropDownWrapper);
+
+    menuField.appendChild(buttons);
+    menuField.appendChild(modaLWrapper);
+    let card = document.createElement("div");
+    card.setAttribute("class", "card container mt-5");
+    card.appendChild(menuField);
+    card.appendChild(tableWrapper);
+
+    rootElement.appendChild(card);
   }
+}
+
+function initTable(tbl, divID, searchFieldId) {
+  let retrievedObject = localStorage.getItem("testObject");
+
+  let checkBoxState = {};
+  if (JSON.parse(retrievedObject) != null) {
+    checkBoxState = JSON.parse(retrievedObject);
+  }
+
+  tbl.checkBoxState = checkBoxState;
+
+  tbl.initializeTable(divID, searchFieldId);
+
+  tbl.prepareModal(divID + "Form");
+
+  $(tbl.searchField).on("click", "#" + searchFieldId + "Button", function() {
+    $(this.closest("div")).toggleClass("is-focused");
+  });
+
+  $(tbl).on("click", "th", function() {
+    $("table tr.protocoll").remove();
+    // console.log("ich habe es gecklickt");
+    let col = $(this)
+      .parent()
+      .children()
+      .index($(this));
+
+    // console.log(col);
+    tbl.sortTable(col);
+  });
+
+  $(tbl.searchField).on("keyup", "#" + searchFieldId, function() {
+    console.log("bin hier drin");
+    tbl.filterTable(this);
+  });
+
+  $(tbl.table).on("click", ".deleteButton", function() {
+    let rowIndex = $(this).closest("tr")[0].rowIndex;
+    tbl.deleteRow(rowIndex);
+  });
+
+  $(tbl.table).on("click", ".protoCollButton", function() {
+    if ($(this).hasClass("pressed")) {
+      $(tbl.table.getElementsByClassName("protocoll")).remove();
+      $(this).removeClass("pressed");
+    } else {
+      $(".pressed").removeClass("pressed");
+      $(tbl.table.getElementsByClassName("protocoll")).remove();
+      let referenceRow = $(this).closest("tr")[0];
+
+      tbl.toggleProtocoll(referenceRow);
+      $(this).addClass("pressed");
+    }
+  });
+
+  $(tbl.table).on("click", ".editButton", function() {
+    //toggle die Modal buttons von Save auf Edit
+    document.getElementById("addFahrzeuge").hidden = true;
+    document.getElementById("editSave").hidden = false;
+
+    $("#" + divID + "Modal").modal("show");
+    //lese die rows des edit Buttons aus
+    let currentRowsTds = $(this)
+      .closest("tr")[0]
+      .getElementsByTagName("td");
+
+    //geben der Modal form die Id des current Rows
+    let modalForm = document.getElementById(divID + "Form");
+
+    modalForm.name = this.closest("tr").id;
+
+    console.log(this.closest("tr"));
+    this.closest("tr").classList.add("wirdEditiert");
+    //hier ist ein Problem
+
+    //befülle die Modal inputs mit den Daten aus den tds
+    let inputFields = modalForm.getElementsByTagName("input");
+    for (let td in currentRowsTds) {
+      if (inputFields[td] != undefined) {
+        let tdInhalt = currentRowsTds[td].innerHTML;
+        inputFields[td].value = tdInhalt;
+      }
+    }
+  });
+
+  $(tbl.dropDownMenu).on("click", ".downloadCSV", function() {
+    tbl.exportToCSV(divID);
+  });
+
+  $("#" + divID + "saveButton").click(function() {
+    let modalForm = document.getElementById("modalForm");
+
+    let inputFields = modalForm.getElementsByTagName("input");
+
+    let inputStruct = { protocoll: [] };
+    for (let input = 0; input < inputFields.length; input++) {
+      let inputValue = inputFields[input];
+      inputStruct[inputFields[input].name] = inputValue.value;
+    }
+
+    tbl.appendRow(inputStruct);
+  });
+
+  $("#" + divID + "addButton").click(function() {
+    //toggle die Buttons von edit auf add
+    document.getElementById("addFahrzeuge").hidden = false;
+    document.getElementById("editSave").hidden = true;
+
+    let modalForm = document.getElementById(divID + "Form");
+    modalForm.name = "";
+  });
+
+  $(tbl.checkBox).on("click", ".checkboxButton", function() {
+    tbl.toggleCheckBoxes(this);
+  });
+
+  $(document).on("click", "#editSave", function() {
+    //suche die current Modal aus
+
+    console.log("try to save");
+
+    let modalForm = document.getElementById(divID + "Form");
+    let modaId = modalForm.name;
+
+    //die Input fields des modals
+    let inputFields = modalForm.getElementsByTagName("input");
+    let targetTr = tbl.table.querySelector(".wirdEditiert");
+
+    // let targetTr = table.getElementById(modaId);
+
+    console.log(targetTr);
+    let targetTds = targetTr.getElementsByTagName("td");
+
+    //hier in die Datenbank einspeisen
+    let inputStruct = {};
+    for (let input = 0; input < inputFields.length; input++) {
+      //setze die letzten Einträge in das Protocoll
+
+      inputStruct[inputFields[input].name] = inputFields[input].value;
+
+      let inputValue = inputFields[input];
+
+      targetTds[input].innerHTML = inputValue.value;
+    }
+
+    tbl.data[modaId][tbl.protocollString].push(inputStruct);
+
+    // hier entferne ich die Classe von Protocoll
+
+    $(targetTr.getElementsByClassName("noProtocoll")).removeClass(
+      "noProtocoll"
+    );
+    targetTr.classList.remove("modalForm");
+
+    ///hier json_data hochschicken zu mongo DB
+
+    $("#" + divID + "Modal").modal("hide");
+  });
 }

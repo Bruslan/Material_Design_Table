@@ -25,12 +25,11 @@
   opacity:  0;
 }
 
-
-#demo-menu-lower-right{
+.dropDownMenu{
   margin-right: 15px;
   margin-top: 15px;
 }
-#addButton{
+.addButton{
   margin-right: 15px;
   margin-top: 15px;
 }

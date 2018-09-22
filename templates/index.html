@@ -79,33 +79,6 @@
         </div>
     </nav>
 
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="modalBody">
-                    <form id="modalForm">
-                        <!-- <div class="form-group">
-                            <label class="bmd-label-floating">Email address</label>
-                            <input class="form-control">
-                        </div> -->
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="addFahrzeuge" class="btn btn-primary">Save new</button>
-                    <button type="button" id="editSave" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="container">
         <nav class="mt-5" aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -115,73 +88,19 @@
         </nav>
     </div>
 
-    <div class="container enableCheckboxToggler">
-        <button type="button" class="col btn btn-primary bmd-btn-icon">
-            <i class="material-icons">more_vert</i>
-        </button>
+
+    <div id="dieTabelle">
+
+
     </div>
 
 
+    <div class="mt-5" id="dieTabelle2">
+
+
+    </div>
     <!-- ab hier das Object table -->
-    <div class="container card enableCheckbox">
 
-        <div id="Checkboxes">
-
-        </div>
-
-    </div>
-
-
-    <div class="card container mt-5">
-        <div class="row">
-            <div class="col " id="searchfield">
-            </div>
-
-            <div class="col text-right vcenter" id="menuField">
-                <button data-toggle="modal" data-target="#exampleModalCenter" id="addButton" type="button " class="mdl-button mdl-js-button mdl-button--icon mdl-button--fab mdl-button--mini-fab">
-                    <i class="material-icons">add</i>
-                </button>
-
-                <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon mdl-button--fab mdl-button--mini-fab">
-                    <i class="material-icons">apps</i>
-                </button>
-
-
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
-                    <li class="mdl-list__item mdl-menu__item downloadCSV">
-                        <span class="mdl-list__item-primary-content ">
-                            <i class="material-icons mdl-list__item-icon">save</i>
-                            Save CSV
-                        </span>
-                    </li>
-                    <li class="mdl-list__item mdl-menu__item downloadExcel">
-                        <span class="mdl-list__item-primary-content ">
-                            <i class="material-icons mdl-list__item-icon">list</i>
-                            Save Excel
-                        </span>
-                    </li>
-                    <li class="mdl-list__item mdl-menu__item enableCheckboxes">
-                        <span class="mdl-list__item-primary-content">
-                            <i class="material-icons mdl-list__item-icon">import_export</i>
-                            Import CSV
-                        </span>
-                    </li>
-                    <li class="mdl-list__item mdl-menu__item ">
-                        <span class="mdl-list__item-primary-content ">
-                            <i class="material-icons mdl-list__item-icon ">cloud</i>
-                            Archif download
-                        </span>
-                    </li>
-
-                </ul>
-
-            </div>
-        </div>
-
-        <div id="weitereTabelle" class="row card-body container"></div>
-
-
-    </div>
 
 
 
